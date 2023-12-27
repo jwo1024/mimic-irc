@@ -1,14 +1,16 @@
 # irc readme.md
 
 # Mimic-IRC
+## IRC 란?
 
-{우리는 IRC 서버를 만들었다.}
+IRC란 Internet Relay Chat의 약자로 실시간 인터넷 채팅 프로토콜이다. 클라이언트는 서버에 연결되어 채널을 개설 및 채팅이 가능하고, 서버는 부하 분산을 위해 트리구조로 이어져있는 다중 서버 간 메시지 전달(릴레이 기능)을 통해 안정적인 서비스를 제공한다.
+
+우리는 3주간의 개발기간을 거쳐, IRC 프로토콜을 잘 준수하는 서버를 구현하는데 성공했다.
 ![작동스크린샷-WellcomeMsg-white](readme-img/작동스크린샷-WellcomeMsg-white.png)
-![작동스크린샷-채팅방과DM](readme-img/작동스크린샷-채팅방과DM.png)
-![작동스크린샷-채팅방과BOT](readme-img/작동스크린샷-채팅방과BOT.png)
+<div align="center"> irssi 클라이언트가 서버에 접속했을때 출력되는 화면</div>
 
 ---
-
+<!--
 # 목차
 
 - [팀원](https://github.com/jwo1024/Mimic-IRC#%ED%8C%80%EC%9B%90)
@@ -16,7 +18,7 @@
 - [IRC](https://github.com/jwo1024/Mimic-IRC#irc)
 - [Mimic-irc 사용 및 테스트](https://github.com/jwo1024/Mimic-IRC#mimic-irc-%EC%82%AC%EC%9A%A9-%EB%B0%8F-%ED%85%8C%EC%8A%A4%ED%8A%B8)
 - [Mimic-irc 구현사항](https://github.com/jwo1024/Mimic-IRC#mimic-irc-%EA%B5%AC%ED%98%84%EC%82%AC%ED%95%AD)
-
+-->
 ## 팀원
 
 - jayoon, jchoi, **jiwolee**, jiyun, seoyoo
@@ -40,11 +42,6 @@
     - utils : `PONG`
 - 서버 상에서 클라이언트와 동등하게 인식되는 chatting bot 프로그램 개발
 
-## IRC 란?
-
-IRC란 Internet Relay Chat의 약자로 실시간 인터넷 채팅 프로토콜이다.
-
-서버가 트리구조로 이어져있어 A서버에 붙어있는 클라이언트의 메시지가 B서버에 붙어있는 클라이언트로 relay 이어 달리기 처럼 전해준다.
 
 ## 접근법
 
@@ -57,34 +54,41 @@ IRC란 Internet Relay Chat의 약자로 실시간 인터넷 채팅 프로토콜�
 3. 1과 2번의 과정을 통해 우리가 만들고자 하는 서버가 제공해야하는 기능을 구체화할 수 있었음.
 
 ## Mimic-irc 구현사항
-
-- C++
+![작동스크린샷-채팅방과DM](readme-img/작동스크린샷-채팅방과DM.png)
+---
+- C++ with OOP paradigm
 - I/O Multiplexing
     - `kqueue` 사용
     - `socket`은 Non-block으로 설정
 - 제공하는 프로토콜 Command
-    - connection registration`PASS`, `NICK`, `USER`, `QUIT`
-    - channel operator `JOIN`, `PART`, `TOPIC`, `INVITE`, `KICK`, `PRIVMSG`, `MODE`
-    - utils`PONG`
+    - connection registration : `PASS`, `NICK`, `USER`, `QUIT`
+    - channel operator : `JOIN`, `PART`, `TOPIC`, `INVITE`, `KICK`, `PRIVMSG`, `MODE`
+    - utils : `PONG`
 - 봇
     - 개별 클라이언트로서 작동함
     - 제공하는 프로토콜 Command`PRIVMSG`, `QUIT`, `PASS`, `NICK`, `USER`, `JOIN`, `PING`, `PONG`, `PART`
     - 원하는 채팅방에 입퇴장
     - 메시지 출력 기능사용자가 채팅방에 `"Hi, [jiyun | jchoi | jiwolee | seoyoo | jayoon]"`을 입력시 특정 메시지를 응답함
     - 채팅방에 현재시각 출력
-
+<!--![작동스크린샷-채팅방과BOT](readme-img/작동스크린샷-채팅방과BOT.png) 스샷이 좀 불분명하게 찍힌것 같다.-->
 ## 고민했던 점 & 공부한 것들
 
 - 객체지향적 프로그래밍
-    - 팀원들 모두 절차지향언어인 C언어를 베이스로 하여 공부하였기 때문에 Mimic-irc 를 시작하여,객체지향적인 구조를 짜는 것에 익숙하지 않았다.
-    - 객체 지향적으로 만드려고 노력했다 어필하고 싶음
+    - 팀원들 모두 절차지향언어인 C언어로 프로그램을 작성하는데 익숙해져 있었기 때문에, 기존보다 규모가 큰 Mimic-irc를 구현하며 적용한 C++의 OOP 패러다임에 많은 낯설음을 느꼈다.
+    - sequnece diagram을 작성하여, 구현 목표를 분명하게 했던 것이 많은 도움이 되었던 것 같다.
 - I/O Multiplexing 애 대한 이해
-    - 어떤 **순서로** 받는지 → 동기, 비동기
-    - **기다렸다** 받는지 → 블로킹, 논블로킹
-    - 논블로킹 x 비동기
-- 갈등사항?
-    - 프로젝트 진행 방식의 합의와 규칙이 없었기에, 작업의 확실한 모듈화를 원하는 팀원들과 전체 프로젝트의 진행을 파악하고 싶어 하는 팀원들 간의 동상이몽이 있었습니다.
-    - 또한 전체적인 구조를 제가 이해하고 있었음에도 불구하고, 시간에 쫓긴다는 이유로 충분한 지식 나눔을 하지 못하여 팀원들 간의 지식 격차가 벌어졌습니다.
+    - 기본적인 에코서버 구현에서 출발하여 왜 I/O Multiplexing이 필요한지를 이해할 수 있었다. 
+        - 어떤 **순서로** 받는지 → 동기, 비동기처리의 차이
+        - **기다렸다** 받는지 → 블로킹, 논블로킹의 차리
+        - 논블로킹 x 비동기
+    - 사용할 poller를(kqueue) 선정한 이후, 관련 API 사용방법을 정리해야 했다.
+        - 통신 관련 코드는 대부분 C언어 라이브러리를 사용해서 C++ 스타일에 맞춰 작성하는데 조금 번거로움이 있었던 것 같다.
+- 구현 범위 결정
+    - irssi의 경우 tcp 메시지를 자동완성하고, 오기입을 일부 수정해주는 등 사용자 편의를 제공하고 있었는데 서버 관점에서도 이러한 사항들을 따라가야 하는지 사안마다 결정이 필요했다.
+    - BOT을 구현하고 서버에서 테스트하면서, 오픈소스지만 실제로 사용되는 서버 프로그램인 insplRCd 에서도 segmentation fault가 발생하는 경우가 있었는데, 이와같은 ub들을 어디까지 처리해야하는지 결정해야 했다.
+- 기타 애로사항
+    - 프로젝트 진행 방식의 합의와 규칙이 없었기에, 작업의 확실한 모듈화를 원하는 팀원들과 전체 프로젝트의 진행을 파악하고 싶어 하는 팀원들 간의 동상이몽이 있었다.
+    - 또한 전체적인 구조를 내가 이해하고 있었음에도 불구하고, 시간에 쫓긴다는 이유로 충분한 지식 나눔을 하지 못하여 팀원들 간의 지식 격차가 벌어졌다.
 
 ## Mimic-irc 사용 및 테스트
 
