@@ -71,6 +71,15 @@ IRC란 Internet Relay Chat의 약자로 실시간 인터넷 채팅 프로토콜�
     - 메시지 출력 기능사용자가 채팅방에 `"Hi, [jiyun | jchoi | jiwolee | seoyoo | jayoon]"`을 입력시 특정 메시지를 응답함
     - 채팅방에 현재시각 출력
 <!--![작동스크린샷-채팅방과BOT](readme-img/작동스크린샷-채팅방과BOT.png) 스샷이 좀 불분명하게 찍힌것 같다.-->
+
+## Sequence Diagram
+
+- 초기세팅 & Server build
+  ![다이어그램-초기세팅_Serverbuild](readme-img/다이어그램-초기세팅_Serverbuild.png)
+- Client 연결 요청시
+  ![다이어그램-Client_요청시](readme-img/다이어그램-Client_요청시.png)
+- [다이어그램 전체 구조설계](readme-img/다이어그램-전체_구조설계.png)
+
 ## 고민했던 점 & 공부한 것들
 
 - 객체지향적 프로그래밍
@@ -133,14 +142,6 @@ tcpflow
 nc
 - `nc -C 127.0.0.1 8080`
 - `nc -C [ip주소] [포트번호]`
-
-## Sequence Diagram
-
-- 초기세팅 & Server build
-  ![다이어그램-초기세팅_Serverbuild](readme-img/다이어그램-초기세팅_Serverbuild.png)
-- Client 연결 요청시
-  ![다이어그램-Client_요청시](readme-img/다이어그램-Client_요청시.png)
-- [다이어그램 전체 구조설계](readme-img/다이어그램-전체_구조설계.png)
 
 ## 참고자료
 
