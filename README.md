@@ -1,6 +1,18 @@
 # irc readme.md
 
 # Mimic-IRC
+
+- [IRC 란?](#irc-란)
+- [팀원](#팀원)
+  - [수행한 역할 - jiwolee](#수행한-역할---jiwolee)
+- [목표](#목표)
+- [접근법](#접근법)
+- [Mimic-irc 구현사항](#mimic-irc-구현사항)
+- [Sequence Diagram](#sequence-diagram)
+- [고민했던 점 & 공부한 것들](#고민했던-점--공부한-것들)
+- [Mimic-irc 사용 및 테스트](#mimic-irc-사용-및-테스트)
+- [참고자료](#참고자료)
+
 ## IRC 란?
 
 IRC란 Internet Relay Chat의 약자로 실시간 인터넷 채팅 프로토콜이다. 클라이언트는 서버에 연결되어 채널을 개설 및 채팅이 가능하고, 서버는 부하 분산을 위해 트리구조로 이어져있는 다중 서버 간 메시지 전달(릴레이 기능)을 통해 안정적인 서비스를 제공한다.
